@@ -14,7 +14,7 @@
 #include "driver/gpio.h"
 #include "sdkconfig.h"
 #include "esp_log.h"
-
+#include "DS3231/DS3231.h"
 #define ECHO_TEST_TXD (CONFIG_EXAMPLE_UART_TXD)
 #define ECHO_TEST_RXD (CONFIG_EXAMPLE_UART_RXD)
 #define ECHO_TEST_RTS (UART_PIN_NO_CHANGE)

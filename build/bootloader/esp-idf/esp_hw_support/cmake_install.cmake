@@ -39,6 +39,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/bootloader/esp-idf/esp_hw_support/port/esp32/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/bootloader/esp-idf/esp_hw_support/port/esp32/cmake_install.cmake")
 endif()
 

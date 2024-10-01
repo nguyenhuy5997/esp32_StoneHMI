@@ -1,8 +1,8 @@
-# Install script for directory: E:/Espressif/Espressif/frameworks/Workspace/uart_echo
+# Install script for directory: E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/uart_echo")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/ESP32StoneHMI")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

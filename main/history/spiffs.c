@@ -70,17 +70,25 @@ esp_err_t init_SPIFFS(){
     return ret;
 }
 
-void save_history(){
-	char buffer[30];
+void save_history(uint8_t mode, uint16_t time ){
+	char buffer_time[30];
+	char buffer_machine_run[30];
+	uint16_t period = 1;
+	if(mode == 1) period = 5;
+	else if(mode == 2) period = 10;
+	else if(mode == 3) period = 15;
+	else if(mode == 4) period = 20;
+	else if(mode == 5) period = 30;
+	else period = 1;
 	struct timeval tv;
 	time_t curtime;
-	gettimeofday(&tv, NULL);
-	curtime=tv.tv_sec;
     ESP_LOGI(TAG, "Opening file");
     gettimeofday(&tv, NULL);
     curtime=tv.tv_sec;
-    strftime(buffer,30,"%m-%d-%Y %T,15,1,120",localtime(&curtime));
-    insert_text_at_first_line("/spiffs/log.txt", buffer);
+    strftime(buffer_time,30,"%m-%d-%Y %T,",localtime(&curtime));
+    sprintf(buffer_machine_run, "%d,%d,%d", period, mode, time);
+    strcat(buffer_time, buffer_machine_run);
+    insert_text_at_first_line("/spiffs/log.txt", buffer_time);
     ESP_LOGI(TAG, "File written");
 }
 void push_history(){
@@ -146,13 +154,26 @@ void push_history(){
     }
 }
 void set_time_epoch(){
+
 	struct timeval now;
-	now.tv_sec=1679385737;
+	struct tm time;
+	i2c_dev_t dev;
+	ESP_ERROR_CHECK(i2cdev_init());
+	memset(&dev, 0, sizeof(i2c_dev_t));
+	ESP_ERROR_CHECK(ds3231_init_desc(&dev, 0, 21, 22));
+	if (ds3231_get_time(&dev, &time) != ESP_OK)
+	{
+		printf("Could not get time\n");
+		return;
+	}
+	now.tv_sec=mktime(&time);
 	now.tv_usec=0;
 	struct timezone utc = {0,0};
     int retrc = settimeofday(&now, &utc);
     if(retrc == 0){
-        printf("settimeofday() successful.\n");
+        char buffer[80];
+        strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", localtime(&now.tv_sec));
+        printf("settimeofday() successful: %s\r\n", buffer);
     }
 }
 void insert_text_at_first_line(const char *filename, const char *new_text) {

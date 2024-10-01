@@ -2,7 +2,7 @@
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/uart_echo")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/ESP32StoneHMI")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -39,371 +39,371 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/xtensa/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/xtensa/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_ringbuf/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_ringbuf/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/efuse/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/efuse/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/driver/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/driver/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_pm/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_pm/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/mbedtls/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/mbedtls/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_app_format/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_app_format/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/bootloader_support/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/bootloader_support/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/bootloader/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/bootloader/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esptool_py/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esptool_py/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/partition_table/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/partition_table/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_partition/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_partition/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/app_update/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/app_update/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_mm/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_mm/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/spi_flash/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/spi_flash/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/pthread/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/pthread/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_system/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_system/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_rom/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_rom/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/hal/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/hal/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/log/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/log/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/heap/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/heap/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/soc/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/soc/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_hw_support/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_hw_support/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/freertos/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/freertos/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/newlib/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/newlib/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/cxx/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/cxx/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_common/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_common/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_timer/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_timer/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/app_trace/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/app_trace/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_event/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_event/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/nvs_flash/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/nvs_flash/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_phy/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_phy/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/vfs/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/vfs/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/lwip/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/lwip/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_netif_stack/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_netif_stack/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_netif/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_netif/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/wpa_supplicant/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/wpa_supplicant/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_coex/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_coex/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_wifi/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_wifi/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/bt/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/bt/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/unity/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/unity/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/cmock/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/cmock/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/console/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/console/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/http_parser/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/http_parser/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp-tls/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp-tls/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_adc/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_adc/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_eth/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_eth/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_gdbstub/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_gdbstub/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_hid/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_hid/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/tcp_transport/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/tcp_transport/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_http_client/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_http_client/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_http_server/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_http_server/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_https_ota/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_https_ota/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_https_server/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_https_server/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_psram/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_psram/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_lcd/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_lcd/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/protobuf-c/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/protobuf-c/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/protocomm/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/protocomm/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/esp_local_ctrl/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/esp_local_ctrl/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/espcoredump/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/espcoredump/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/wear_levelling/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/wear_levelling/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/sdmmc/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/sdmmc/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/fatfs/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/fatfs/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/idf_test/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/idf_test/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/ieee802154/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/ieee802154/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/json/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/json/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/mqtt/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/mqtt/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/openthread/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/openthread/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/perfmon/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/perfmon/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/spiffs/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/spiffs/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/ulp/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/ulp/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/usb/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/usb/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/wifi_provisioning/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/wifi_provisioning/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/main/cmake_install.cmake")
+  include("E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/main/cmake_install.cmake")
 endif()
 

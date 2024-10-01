@@ -1,8 +1,8 @@
-# Install script for directory: E:/Espressif/Espressif/frameworks/Workspace/uart_echo/main
+# Install script for directory: E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/uart_echo")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/ESP32StoneHMI")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

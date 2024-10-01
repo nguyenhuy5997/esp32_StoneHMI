@@ -3,4 +3,4 @@ source "E:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_app_format/Kconfig
 source "E:/Espressif/frameworks/esp-idf-v5.1.2/components/esp_rom/Kconfig.projbuild"
 source "E:/Espressif/frameworks/esp-idf-v5.1.2/components/esptool_py/Kconfig.projbuild"
 source "E:/Espressif/frameworks/esp-idf-v5.1.2/components/partition_table/Kconfig.projbuild"
-source "E:/Espressif/Espressif/frameworks/Workspace/uart_echo/main/Kconfig.projbuild"
+source "E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/main/Kconfig.projbuild"

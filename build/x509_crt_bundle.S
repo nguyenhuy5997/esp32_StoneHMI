@@ -1,4 +1,4 @@
-/* * Data converted from E:/Espressif/Espressif/frameworks/Workspace/uart_echo/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 .section .rodata.embedded
