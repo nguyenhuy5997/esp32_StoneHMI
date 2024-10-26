@@ -6,45 +6,47 @@
 
 //Receive relevant*******************************************
 #define RX_LEN 200
-enum recive_cmd {sys_state = 0x0000,                    //System states
-                 sys_hello = 0x0001,                    //System return code for communication test command (sys_hello)
-                 sys_version = 0x0002,                  //System firmware information return for get_version command
-                 control_button = 0x1001,               //button status send
-                 control_button_u = 0x1002,             //button key value send (will be released soon)
-                 control_switch = 0x1010,               //switch value changed return
-                 control_check_button = 0x1020,         //check button value changed return
-                 control_radio_button = 0x1030,         //radio button value changed return initiative
-                 control_radio_button_s = 0x1031,       //radio button value changed return passively(by get_checked command from MCU)
-                 control_slider = 0x1040,               //slider value changing return
-                 control_slider_over = 0x1041,          //slider value changed return
-                 control_progress_bar = 0x1050,         //progress bar value changed return
-                 control_progress_bar_p = 0x1051,       //progress bar percentage return passively, by get_percent command from MCU
-                 control_label_text = 0x1060,           //label text content return passively (The display will only return the command after received the get_text command from MCU)
-                 control_label_value = 0x1062,          //label value return (float type)(while the label was targeted by the set_value function on the button, the code will return once the value is changed)
-                 control_edit_text = 0x1070,            //edit text return (Initiatively or passively. It can be returned after the edit text changed, or returned by get_text command)
-                 control_edit_int = 0x1071,             //edit data return(int type)
-                 control_edit_float = 0x1072,           //edit data return(float type)
-                 control_text_selector_text = 0x1080,   //text selector text content return passively (by get_text command)
-                 control_text_selector_value = 0x1081,  //text selector value return initiatively (int type value, can be read by get_value command from MCU)
-                 control_text_selector_num = 0x1082,    //text selector index number return passively (int type value by get_value command from MCU)
-								 control_image = 0x1090,								//Image key Delivers the system key
-								 control_image_u = 0x1091,							//Image key Delivers a user-defined key value
-								 control_image_value = 0x1092,          //image_value value return (float type, can be returned initiatively or passively)
-								 control_spin_box_text = 0x10A0,				//Spin_box text delivery
-								 control_spin_box_int = 0x10A1,					//Spin_box value delivered (int type)
-								 control_spin_box_float = 0x10A2,				//Spin_box value delivered (float type)
-								 control_combo_box_text = 0x10B0,				//combo_box text delivery
-								 control_combo_box_int = 0x10B1,				//combo_box value delivered (int type)
-								 control_combo_box_float = 0x10B2,			//combo_box value delivered (float type)
-								 control_combo_box_num = 0x10B8,				//combo_box serial number is delivered
-								 control_mledit_text = 0x10C0,					//mledit text delivery
-								 control_chart_view_value = 0x10D1,			//chart_view value delivered
-								 control_chart_view_capacity = 0x10D2,	//chart_view capacity delivery (response to the instruction get_capacity)
-								 control_progress_circle_value = 0x10E0,//progress_circle value delivered (float type)
-								 control_progress_circle_p = 0x10E1,		//progress_circle percentage return passively, by get_percent command from MCU
-								 control_digit_clock = 0x10F0,					//digit_clock Date + time return (get_date in MCU)
-								 control_hscroll_label = 0x1100					//hscroll_label Text return (the GEt_TEXT instruction is used in the MCU)
-                 };
+enum recive_cmd {
+	sys_state = 0x0000,                    //System states
+	sys_hello = 0x0001, //System return code for communication test command (sys_hello)
+	sys_version = 0x0002, //System firmware information return for get_version command
+	control_button = 0x1001,               //button status send
+	control_button_u = 0x1002,   //button key value send (will be released soon)
+	control_switch = 0x1010,               //switch value changed return
+	control_check_button = 0x1020,         //check button value changed return
+	control_radio_button = 0x1030, //radio button value changed return initiative
+	control_radio_button_s = 0x1031, //radio button value changed return passively(by get_checked command from MCU)
+	control_slider = 0x1040,               //slider value changing return
+	control_slider_over = 0x1041,          //slider value changed return
+	control_progress_bar = 0x1050,         //progress bar value changed return
+	control_progress_bar_p = 0x1051, //progress bar percentage return passively, by get_percent command from MCU
+	control_label_text = 0x1060, //label text content return passively (The display will only return the command after received the get_text command from MCU)
+	control_label_value = 0x1062, //label value return (float type)(while the label was targeted by the set_value function on the button, the code will return once the value is changed)
+	control_edit_text = 0x1070, //edit text return (Initiatively or passively. It can be returned after the edit text changed, or returned by get_text command)
+	control_edit_int = 0x1071,             //edit data return(int type)
+	control_edit_float = 0x1072,           //edit data return(float type)
+	control_text_selector_text = 0x1080, //text selector text content return passively (by get_text command)
+	control_text_selector_value = 0x1081, //text selector value return initiatively (int type value, can be read by get_value command from MCU)
+	control_text_selector_num = 0x1082, //text selector index number return passively (int type value by get_value command from MCU)
+	control_image = 0x1090,					//Image key Delivers the system key
+	control_image_u = 0x1091,	//Image key Delivers a user-defined key value
+	control_image_value = 0x1092, //image_value value return (float type, can be returned initiatively or passively)
+	control_spin_box_text = 0x10A0,				//Spin_box text delivery
+	control_spin_box_int = 0x10A1,		//Spin_box value delivered (int type)
+	control_spin_box_float = 0x10A2,	//Spin_box value delivered (float type)
+	control_combo_box_text = 0x10B0,				//combo_box text delivery
+	control_combo_box_int = 0x10B1,		//combo_box value delivered (int type)
+	control_combo_box_float = 0x10B2,	//combo_box value delivered (float type)
+	control_combo_box_num = 0x10B8,		//combo_box serial number is delivered
+	control_mledit_text = 0x10C0,					//mledit text delivery
+	control_chart_view_value = 0x10D1,			//chart_view value delivered
+	control_chart_view_capacity = 0x10D2,//chart_view capacity delivery (response to the instruction get_capacity)
+	control_progress_circle_value = 0x10E0,	//progress_circle value delivered (float type)
+	control_progress_circle_p = 0x10E1,	//progress_circle percentage return passively, by get_percent command from MCU
+	control_digit_clock = 0x10F0,//digit_clock Date + time return (get_date in MCU)
+	control_hscroll_label = 0x1100,//hscroll_label Text return (the GEt_TEXT instruction is used in the MCU)
+	displayed_window = 0x2001, //get_displayed_window return
+};
 
 typedef struct Recive{
     unsigned int     cmd;
@@ -148,6 +150,7 @@ unsigned short do_crc(unsigned char *ptr, int len);
 #define STR_BACK_WIN					"back_win"
 #define	STR_BACK_WIN_TO				"back_win_to"
 #define	STR_BACK_HOME					"back_home"
+#define	STR_DISPLAY_WINDOWN					"get_displayed_window"
 #define	STR_TEXT							"text"
 #define	STR_VALUE							"value"
 #define STR_GET_							"get_"
@@ -173,8 +176,10 @@ unsigned short do_crc(unsigned char *ptr, int len);
 #define	STR_CHECKED						"checked"
 #define	STR_ANGLE							"angle"
 #define STR_TYPE							"type"
+#define STR_HEIGHT						"height"
 #define STR_SYSTEM						"system"
 #define	STR_WIDGET						"widget"
+#define STR_NUM							"num"
 #define	STR_WINDOW						"window"
 #define	STR_LABEL							"label"
 #define	STR_EDIT							"edit"
@@ -193,7 +198,12 @@ unsigned short do_crc(unsigned char *ptr, int len);
 #define STR_END_INDEX					"end_index"
 #define STR_END								"}>ET"
 #define JSON_END							1
-
+#define STR_ROW_HEIGHT				"row_height"
+#define STR_ROW_NUMBER				"row_number"
+#define STR_TABLE_TEXT				"table_text"
+#define STR_TABLE_VIEW				"table_view"
+#define STR_TABLE_TEXT				"table_text"
+#define STR_ROW						"row"
 #define STR_TYPE_NUM 	strcmp(name,STR_SLEEP)==0||\
 											strcmp(name,STR_ENABLE)==0||\
 											strcmp(name,STR_VISIBLE)==0||\
@@ -282,6 +292,10 @@ void open_win(char* _name, ...);
 /* Command interface to return to the previous level of window */
 // Call the example: back_win();
 void back_win(void);
+
+/* Command interface to return to the previous level of window */
+// Call the example: back_win();
+void get_displayed_window(void);
 
 /* Return to the command interface of the specified window */
 // Call the example: back_win_to("window1");
@@ -393,6 +407,10 @@ void get_checked(char* _name);
 // Call the example: set_angle("pointer1", "10");
 void set_angle(char* _name, char* _angle);
 
+void set_row_height(char* _name, uint16_t height);
 
+void set_row_number(char* _name, uint16_t number);
+
+void set_table_text(char* _name, char* text, uint16_t number);
 
 #endif

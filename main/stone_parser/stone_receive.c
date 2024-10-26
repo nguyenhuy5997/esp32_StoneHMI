@@ -25,7 +25,6 @@ void uart_task(void *arg)
     ESP_ERROR_CHECK(uart_param_config(ECHO_UART_PORT_NUM, &uart_config));
     ESP_ERROR_CHECK(uart_set_pin(ECHO_UART_PORT_NUM, ECHO_TEST_TXD, ECHO_TEST_RXD, ECHO_TEST_RTS, ECHO_TEST_CTS));
     uint8_t *data = (uint8_t *) malloc(RX_LEN);
-    get_value("label", "FREQ1");
     while (1) {
         // Read data from the UART
         int len = uart_read_bytes(ECHO_UART_PORT_NUM, data, (RX_LEN - 1), 20 / portTICK_PERIOD_MS);

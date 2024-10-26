@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "ESP32StoneHMI",
-    "project_version":    "29ca3b4-dirty",
+    "project_version":    "125ccde-dirty",
     "project_path":       "E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI",
     "idf_path":           "E:/Espressif/frameworks/esp-idf-v5.1.2",
     "build_dir":          "E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build",

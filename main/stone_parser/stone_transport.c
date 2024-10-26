@@ -397,6 +397,14 @@ void back_win(){
 // Call the example: back_win_to("window1");
 #define back_win_to(m_name) open_win(m_name, 2)
 
+void get_displayed_window(void){
+	TX_CNT = sprintf(STONE_TX_BUF,STR_HEAD_CMD2							//"ST<{cmd_code:"
+														"\""STR_DISPLAY_WINDOWN"\","			//"get_displayed_window",
+														"\""STR_TYPE"\":"					//"type":
+														"\""STR_WINDOW"\""				//"window"
+														STR_END);									//}>ET
+	tx_create();
+}
 /* Command interface for returning the main window command */
 // Call the example: back_home();
 void back_home(){
@@ -901,6 +909,45 @@ void set_angle(char* _name, char* _angle){
 		 tx_create();
 }
 
+void set_row_height(char* _name, uint16_t height) {
+	TX_CNT = sprintf(STONE_TX_BUF,STR_HEAD_CMD2							//"ST<{cmd_code:"
+														"\""STR_SET_									//"set_
+															STR_ROW_HEIGHT"\","						//row_height",
+															"\""STR_TYPE"\":"						//"type":
+															"\""STR_TABLE_VIEW"\","				//"table_view",
+															"\""STR_WIDGET"\":"					//"widget":
+															"\"%s\","										//"...",
+															"\""STR_HEIGHT"\":"					//"height":
+															"%d"										//"..."
+															STR_END, _name, height);		//}>ET
+	tx_create();
+}
+void set_row_number(char* _name, uint16_t number) {
+	TX_CNT = sprintf(STONE_TX_BUF,STR_HEAD_CMD2							//"ST<{cmd_code:"
+														"\""STR_SET_									//"set_
+															STR_ROW_NUMBER"\","						//row_number",
+															"\""STR_TYPE"\":"						//"type":
+															"\""STR_TABLE_VIEW"\","				//"table_view",
+															"\""STR_WIDGET"\":"					//"widget":
+															"\"%s\","										//"...",
+															"\""STR_NUM"\":"					//"num":
+															"%d"										//"..."
+															STR_END, _name, number);		//}>ET
+	tx_create();
+}
+void set_table_text(char* _name, char* text, uint16_t number) {
+	TX_CNT = sprintf(STONE_TX_BUF,STR_HEAD_CMD2							//"ST<{cmd_code:"
+														"\""STR_SET_									//"set_
+															STR_TABLE_TEXT"\","						//table_text",
+															"\""STR_TYPE"\":"						//"type":
+															"\""STR_TABLE_VIEW"\","				//"table_view",
+															"\""STR_WIDGET"\":"					//"widget":
+															"\"%s\","										//"...",
+															"\""STR_TEXT"\":"					//"text":
+															"%s,\"mode\":\"row\",\"row\":%d"										//"..."
+															STR_END, _name, text, number);		//}>ET
+	tx_create();
+}
 //int stone_strcpy(char *dst, char *src, ...)
 //{
 //	va_list ap;

@@ -10,7 +10,7 @@
 extern unsigned char STONE_RX_BUF[RX_LEN];
 extern unsigned short STONE_RX_CNT;
 extern const unsigned char frame_head[3];
-extern RingbufHandle_t Stone_CMD_buf_handle;
+extern QueueHandle_t  Stone_CMD_buf_handle;
 int widget_last_len;
 int widget_len;
 recive_group STONER;
@@ -92,7 +92,7 @@ recive_group widgetinit(int len){
  /* Create memory space for "text" Pointers */
 recive_group textinit(int len){
    if (STONER.text != NULL){
-		 memset(STONER.widget, '\0', widget_last_len);
+		 memset(STONER.text, '\0', widget_last_len);
     free(STONER.text);
     STONER.text = NULL;
    }
@@ -328,7 +328,7 @@ void receive_parse (){
 		case control_chart_view_value: {
 			STONER = widgetinit(STONER.len-5);
 			memcpy(STONER.widget,STONE_RX_BUF+7,STONER.len-6);
-      STONER.value = STONE_RX_BUF[7+STONER.len-6];
+			STONER.value = STONE_RX_BUF[7+STONER.len-6];
 			STONER.value = STONER.value<<8 | STONE_RX_BUF[7+STONER.len-5];
 			STONER.float_value = write_hex_to_float(STONE_RX_BUF+7+STONER.len-4);
       #if print_recive_image_value || print_recive_ALL
@@ -352,17 +352,28 @@ void receive_parse (){
 			case_4_byte_data(m_progress_circle_p,m_percent);
     }break;
 		case control_digit_clock: {
-			case_4_byte_data(m_digit_clock,m_value);
+			case_data_text(m_digit_clock);
     }break;
 		case control_hscroll_label: {
 			case_4_byte_data(m_hscroll_label,m_value);
     }break;
+		case displayed_window: {
+			STONER = widgetinit(STONER.len);
+			memcpy(STONER.widget,STONE_RX_BUF+7,STONER.len);
+			STONER.widget[STONER.len] = 0;
+			printf("type:displayed_window;");
+			printf("len:");
+			printf("%d;", STONER.len);
+			printf("widget:%s;\r\n", STONER.widget);
+	}break;
 		default: {
 //			printf("Unknow Command\r\n");
 			return;
 		}
   }
-  xRingbufferSendFromISR(Stone_CMD_buf_handle, &STONER, sizeof(STONER), (BaseType_t *)10);
+  recive_group * pSTONER;
+  pSTONER = &STONER;
+  xQueueSend(Stone_CMD_buf_handle, ( void * ) &pSTONER, (TickType_t)100);
 }
 
 void case_btn_switch_ckbtn_rdbtn (char _type){
@@ -408,21 +419,22 @@ void case_slider_porgressbar (char _type){
 void case_data_text (char _type){
 
 			STONER = widgetinit(40);
-			widget_len=sscanf((const char*)STONE_RX_BUF+8,"%[^\"]:",STONER.widget);
+			sscanf((const char*)STONE_RX_BUF+8,"%[^\"]:",STONER.widget);
+			widget_len = strlen((char*)STONER.widget);
 			STONER = textinit(STONER.len-widget_len-3);
-			memcpy(STONER.text,STONE_RX_BUF+8+widget_len,STONER.len-widget_len-3);
-
+			memcpy(STONER.text,STONE_RX_BUF+10+widget_len,STONER.len-widget_len-3);
+			STONER.text[STONER.len-widget_len-3] = 0;
       #if print_recive_label || print_recive_ALL
 			printf("type:");
 			printf("%s", m_static_str[(uint8_t)_type]);
 			printf("len:");
 			printf("%d",STONER.len);
 			printf(";widget:");
-			for (int wds=0;wds<STONER.len-widget_len-3;wds++)
+			for (int wds=0;wds<widget_len;wds++)
 				printf("%c", STONER.widget[wds]);
 			printf(";text:");
 			for (int wds=0;wds<STONER.len-widget_len-3;wds++)
-				printf("%c",STONER.widget[wds]);
+				printf("%c",STONER.text[wds]);
 			printf(";\r\n");
       #endif
 }

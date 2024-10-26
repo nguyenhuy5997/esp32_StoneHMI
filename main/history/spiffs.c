@@ -92,69 +92,47 @@ void save_history(uint8_t mode, uint16_t time ){
     ESP_LOGI(TAG, "File written");
 }
 void push_history(){
+	set_row_height("table_view1", 40);
     ESP_LOGI(TAG, "Reading file");
     FILE* f = fopen("/spiffs/log.txt", "r");
     if (f == NULL) {
         ESP_LOGE(TAG, "Failed to open file for reading");
         return;
     }
+    char text_data[100];
     char line[64];
     char str1[30], str2[10], str3[10], str4[10];
     uint8_t line_count = 0;
-    char line_count_str[2];
+
     if(f!=NULL){
     	while (fgets(line, sizeof(line), f)) {
 			printf("%s", line);
-			line_count++;
-			if(line_count == 1) {
-				itoa(line_count, line_count_str, 10);
-				sscanf(line, "%[^,],%[^,],%[^,],%s", str1, str2, str3, str4);
-				set_text("label","label3_copy1", line_count_str);
-				set_text("label","label4_copy1_copy1", str1);
-				set_text("label","label4_copy1", str2);
-				set_text("label","label4_copy2_copy1", str3);
-				set_text("label","label4_copy3_copy1", str4);
-			} else if (line_count == 2) {
-				itoa(line_count, line_count_str, 10);
-				sscanf(line, "%[^,],%[^,],%[^,],%s", str1, str2, str3, str4);
-				set_text("label","label3_copy1_copy1", line_count_str);
-				set_text("label","label4_copy1_copy1_copy1", str1);
-				set_text("label","label4_copy5_copy1", str2);
-				set_text("label","label4_copy2_copy1_copy1", str3);
-				set_text("label","label4_copy3_copy1_copy1", str4);
-			} else if (line_count == 3) {
-				itoa(line_count, line_count_str, 10);
-				sscanf(line, "%[^,],%[^,],%[^,],%s", str1, str2, str3, str4);
-				set_text("label","label3_copy2_copy1", line_count_str);
-				set_text("label","label4_copy1_copy2_copy1", str1);
-				set_text("label","label4_copy6_copy1", str2);
-				set_text("label","label4_copy2_copy2_copy1", str3);
-				set_text("label","label4_copy3_copy2_copy1", str4);
-			} else if (line_count == 4) {
-				itoa(line_count, line_count_str, 10);
-				sscanf(line, "%[^,],%[^,],%[^,],%s", str1, str2, str3, str4);
-				set_text("label","label3_copy3_copy1", line_count_str);
-				set_text("label","label4_copy1_copy3_copy1", str1);
-				set_text("label","label4_copy7_copy1", str2);
-				set_text("label","label4_copy2_copy3_copy1", str3);
-				set_text("label","label4_copy3_copy3_copy1", str4);
-			} else if (line_count == 5) {
-				itoa(line_count, line_count_str, 10);
-				sscanf(line, "%[^,],%[^,],%[^,],%s", str1, str2, str3, str4);
-				set_text("label","label3_copy4_copy1", line_count_str);
-				set_text("label","label4_copy1_copy4_copy1", str1);
-				set_text("label","label4_copy8_copy1", str2);
-				set_text("label","label4_copy2_copy4_copy1", str3);
-				set_text("label","label4_copy3_copy4_copy1", str4);
-				break;
-			}
-
+			sscanf(line, "%[^,],%[^,],%[^,],%s", str1, str2, str3, str4);
+			sprintf(text_data,"[\"%d\",\"%s\",\"%s\",\"%s\",\"%s\",\"\"]", line_count, str1, str2, str3, str4);
+			set_table_text("table_view1", text_data, line_count++);
+//			if(line_count > 50) break;
 		}
+    	set_row_number("table_view1", line_count);
 		fclose(f);
     }
 }
-void set_time_epoch(){
-
+esp_err_t time_parser(char * input_string, struct tm *timeStruct) {
+	if (strptime((const char*)input_string, "%Y-%m-%d %H:%M:%S", timeStruct) != NULL) {
+		// Output the contents of the tm structure for validation
+		printf("Hour: %d\n", timeStruct->tm_hour);
+		printf("Minute: %d\n", timeStruct->tm_min);
+		printf("Second: %d\n", timeStruct->tm_sec);
+		printf("Year: %d\n", timeStruct->tm_year + 1900);// tm_year is years since 1900
+		printf("Month: %d\n", timeStruct->tm_mon + 1);// tm_mon is 0-based
+		printf("Day: %d\n", timeStruct->tm_mday);
+		return ESP_OK;
+	} else {
+		return ESP_FAIL;
+		printf("Failed to parse date-time string.\n");
+	}
+	return ESP_OK;
+}
+void set_time_epoch_ds3221(){
 	struct timeval now;
 	struct tm time;
 	i2c_dev_t dev;
@@ -176,14 +154,31 @@ void set_time_epoch(){
         printf("settimeofday() successful: %s\r\n", buffer);
     }
 }
+esp_err_t set_time_epoch_string(char *input_string){
+	struct timeval now;
+	struct tm time;
+	esp_err_t res;
+	res = time_parser(input_string, &time);
+	if(res == ESP_FAIL) return ESP_FAIL;
+	now.tv_sec=mktime(&time);
+	now.tv_usec=0;
+	struct timezone utc = {0,0};
+    int retrc = settimeofday(&now, &utc);
+    if(retrc == 0){
+        char buffer[80];
+        strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", localtime(&now.tv_sec));
+        printf("settimeofday() successful: %s\r\n", buffer);
+        set_date("digit_clock1",buffer);
+    } else return ESP_FAIL;
+    return ESP_OK;
+}
 void insert_text_at_first_line(const char *filename, const char *new_text) {
-    // Mở file để đọc
+
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
         perror("Can not open file");
         return;
     }
-    // Đọc toàn bộ nội dung file
     fseek(file, 0, SEEK_END);
     long file_size = ftell(file);
     fseek(file, 0, SEEK_SET);
@@ -195,16 +190,14 @@ void insert_text_at_first_line(const char *filename, const char *new_text) {
         return;
     }
     fread(content, 1, file_size, file);
-    content[file_size] = '\0'; // Kết thúc chuỗi
+    content[file_size] = '\0';
     fclose(file);
-    // Mở lại file để ghi
     file = fopen(filename, "w");
     if (file == NULL) {
         perror("Can not open file for writing");
         free(content);
         return;
     }
-    // Ghi text mới vào đầu và nội dung cũ vào file
     fprintf(file, "%s\n%s", new_text, content);
     fclose(file);
     free(content);
