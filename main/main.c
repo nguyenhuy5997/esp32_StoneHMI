@@ -8,6 +8,7 @@
 //*/
 #include <stdio.h>
 #include <stdint.h>
+#include <math.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/ringbuf.h"
@@ -20,6 +21,7 @@
 #include "stone_parser/stone.h"
 #include "history/spiffs.h"
 #include "DS3231/DS3231.h"
+#include "XDB305/xdb305.h"
 #define RELAY_1 32
 #define RELAY_2 33
 QueueHandle_t  Stone_CMD_buf_handle;
@@ -138,6 +140,41 @@ static void stone_cmd(){
 		vTaskDelay(pdMS_TO_TICKS(100));
 	}
 }
+static void pressure_read(){
+	float tem = 0;
+	float pres = 0;
+	float tem_ = 0;
+	float pres_ = 0;
+	esp_err_t ret;
+	char pressure_value[5];
+	int16_t percentage;
+	vTaskDelay(pdMS_TO_TICKS(100));
+	ESP_ERROR_CHECK(i2c_master_init());
+	while (1) {
+		tem = pres = tem_ = pres_ = 0;
+		memset(pressure_value, 0, strlen(pressure_value));
+		for(int i = 0; i < 100; i++){
+			ret = read_sensor_one_shot(&tem_, &pres_);
+			if(ret != ESP_OK) {
+				printf("Read data fail, skip current read \r\n");
+				i--;
+			} else {
+				tem = tem + tem_;
+				pres = pres+ pres_;
+			}
+		}
+		tem = tem/100;
+		pres = pres/100;
+		percentage = round(pres*100 / 150);
+		if(percentage < 0) percentage = 0;
+		else if (percentage > 100) percentage = 100;
+//		printf("Pressure - temperature - percentage : %.2f (Bar) - %.1f - %d \n", pres, tem, percentage);
+		sprintf(pressure_value, "%d", percentage);
+		set_text("label","label_pressure_start", pressure_value);
+		set_text("label","label_pressure_stop", pressure_value);
+		vTaskDelay(pdMS_TO_TICKS(1000));
+	}
+}
 static void timer_handle(){
 	example_queue_element_t ele;
     gptimer_config_t timer_config = {
@@ -194,6 +231,7 @@ void app_main(void)
     xTaskCreate(uart_task, "uart_task", ECHO_TASK_STACK_SIZE, NULL, 10, NULL);
 	xTaskCreate(stone_cmd, "stone_cmd", ECHO_TASK_STACK_SIZE*8, NULL, 10, NULL);
 	xTaskCreate(timer_handle, "timer", ECHO_TASK_STACK_SIZE*8, NULL, 10, NULL);
+	xTaskCreate(pressure_read, "sensor read", ECHO_TASK_STACK_SIZE, NULL, 10, NULL);
 	check_status_afer_seset();
 }
 

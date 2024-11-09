@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "ESP32StoneHMI",
-    "project_version":    "125ccde-dirty",
+    "project_version":    "8654a70-dirty",
     "project_path":       "E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI",
     "idf_path":           "E:/Espressif/frameworks/esp-idf-v5.1.2",
     "build_dir":          "E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build",
@@ -790,7 +790,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/build/esp-idf/main/libmain.a",
-            "sources": [ "E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/main/main.c", "E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/main/stone_parser/stone_receive_group.c", "E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/main/stone_parser/stone_receive.c", "E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/main/stone_parser/stone_transport.c", "E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/main/history/spiffs.c", "E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/main/DS3231/DS3231.c", "E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/main/DS3231/i2cdev.c" ],
+            "sources": [ "E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/main/main.c", "E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/main/stone_parser/stone_receive_group.c", "E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/main/stone_parser/stone_receive.c", "E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/main/stone_parser/stone_transport.c", "E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/main/history/spiffs.c", "E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/main/DS3231/DS3231.c", "E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/main/DS3231/i2cdev.c", "E:/Espressif/Espressif/frameworks/Workspace/ESP32StoneHMI/main/XDB305/xdb305.c" ],
             "include_dirs": [ "." ]
         },
         "mbedtls": {

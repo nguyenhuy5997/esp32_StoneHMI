@@ -67,6 +67,22 @@ esp_err_t init_SPIFFS(){
             ESP_LOGI(TAG, "SPIFFS_check() successful");
         }
     }
+    //Check file is exist, if not create then
+    FILE *file;
+
+    // Kiểm tra xem file có tồn tại không
+    file = fopen("/spiffs/log.txt", "r");
+    if (file) {
+        fclose(file);
+    } else {
+        // Nếu file không tồn tại, tạo file
+        file = fopen("/spiffs/log.txt", "w");
+        if (file) {
+            fclose(file);
+        } else {
+            printf("Can not create file %s\n", "/spiffs/log.txt");
+        }
+    }
     return ret;
 }
 
