@@ -24,6 +24,8 @@
 #include "XDB305/xdb305.h"
 #define RELAY_1 32
 #define RELAY_2 33
+#define RELAY_3 25
+#define RELAY_4 26
 QueueHandle_t  Stone_CMD_buf_handle;
 QueueHandle_t Timer_queue;
 gptimer_handle_t gptimer = NULL;
@@ -66,6 +68,8 @@ static void stone_cmd(){
     			printf("Turn on relay\r\n");
     			gpio_set_level(RELAY_1, 0);
     			gpio_set_level(RELAY_2, 0);
+    			gpio_set_level(RELAY_3, 0);
+    			gpio_set_level(RELAY_4, 0);
 				if(mode == 1) record = 5*60;
 				else if(mode == 2) {
 					mode_to_time = record = 10*60;
@@ -91,6 +95,8 @@ static void stone_cmd(){
     			printf("Turn off relay\r\n");
     			gpio_set_level(RELAY_1, 1);
     			gpio_set_level(RELAY_2, 1);
+    			gpio_set_level(RELAY_3, 1);
+    			gpio_set_level(RELAY_4, 1);
     			gptimer_stop(gptimer);
     			save_history(mode, run_time);
     		} else if (strcmp((const char*)STONER_recv->widget, "B42") == 0 || strcmp((const char*)STONER_recv->widget, "B01") == 0) {
@@ -156,7 +162,7 @@ static void pressure_read(){
 		for(int i = 0; i < 100; i++){
 			ret = read_sensor_one_shot(&tem_, &pres_);
 			if(ret != ESP_OK) {
-				printf("Read data fail, skip current read \r\n");
+//				printf("Read data fail, skip current read \r\n");
 				i--;
 			} else {
 				tem = tem + tem_;
@@ -203,6 +209,8 @@ static void timer_handle(){
     			printf("Turn off relay\r\n");
     			gpio_set_level(RELAY_1, 1);
     			gpio_set_level(RELAY_2, 1);
+    			gpio_set_level(RELAY_3, 1);
+    			gpio_set_level(RELAY_4, 1);
     			gptimer_stop(gptimer);
     			save_history(mode, mode_to_time);
     			back_win();
@@ -222,6 +230,14 @@ void app_main(void)
     gpio_set_direction(RELAY_1, GPIO_MODE_OUTPUT);
     gpio_reset_pin(RELAY_2);
     gpio_set_direction(RELAY_2, GPIO_MODE_OUTPUT);
+    gpio_reset_pin(RELAY_3);
+    gpio_set_direction(RELAY_3, GPIO_MODE_OUTPUT);
+    gpio_reset_pin(RELAY_4);
+    gpio_set_direction(RELAY_4, GPIO_MODE_OUTPUT);
+    gpio_set_level(RELAY_1, 1);
+    gpio_set_level(RELAY_2, 1);
+    gpio_set_level(RELAY_3, 1);
+    gpio_set_level(RELAY_4, 1);
 	init_SPIFFS();
 #ifdef DS3221
 	set_time_epoch_ds3221();
