@@ -418,9 +418,10 @@ void back_home(){
 
 /* command interface for Setting the text commands */
 // Call the example: set_text("label", "label5", "hello stone");
-void set_text(char* _type, char* _name, char* _text){
-  if (strcmp(_type,"label")==0 || strcmp(_type,"edit")==0 || strcmp(_type,"text_selector")==0){
+void set_text(char* _type, char* _name, char* _text, bool multi){
+  if (strcmp(_type,"label")==0 || strcmp(_type,"edit")==0 || strcmp(_type,"text_selector")==0 || strcmp(_type,"list_item")==0){
 
+	  if(multi == 0) {
 		TX_CNT = sprintf(STONE_TX_BUF,STR_HEAD_CMD2							//"ST<{cmd_code:"
 													"\""STR_SET_									//"set_
 															STR_TEXT"\","							//text",
@@ -431,6 +432,19 @@ void set_text(char* _type, char* _name, char* _text){
 														"\""STR_TEXT"\":"						//"text":
 														"\"%s\""										//"..."
 														STR_END, _type, _name, _text);		//}>ET
+	  } else {
+			TX_CNT = sprintf(STONE_TX_BUF,STR_HEAD_CMD2							//"ST<{cmd_code:"
+														"\""STR_SET_									//"set_
+																STR_TEXT"\","							//text",
+															"\""STR_TYPE"\":"						//"type":
+															"\"%s\","										//"...",
+															"\""STR_WIDGET"\":"					//"widget":
+															"\"%s\","										//"...",
+															"\""STR_TEXT"\":"						//"text":
+															"%s"										//"..."
+															STR_END, _type, _name, _text);		//}>ET
+	  }
+//		printf("%s\r\n", STONE_TX_BUF);
 		tx_create();
   }
   else

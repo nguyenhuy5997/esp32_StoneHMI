@@ -33,7 +33,7 @@ uint8_t mode = 1;
 uint32_t  record = 300;
 uint32_t run_time = 0;
 uint16_t remaining_time = 0;
-uint32_t mode_to_time = 0;
+uint16_t mode_to_time = 0;
 //#define DS3221
 
 typedef struct {
@@ -70,7 +70,9 @@ static void stone_cmd(){
     			gpio_set_level(RELAY_2, 0);
     			gpio_set_level(RELAY_3, 0);
     			gpio_set_level(RELAY_4, 0);
-				if(mode == 1) record = 5*60;
+				if(mode == 1){
+					mode_to_time = record = 5*60;
+				}
 				else if(mode == 2) {
 					mode_to_time = record = 10*60;
 				}
@@ -90,7 +92,7 @@ static void stone_cmd(){
 				gptimer_start(gptimer);
 				char t[3];
 				itoa(mode,t,10);
-				set_text("label", "FREQ2", t);
+				set_text("label", "FREQ2", t, 0);
     		} else if (strcmp((const char*)STONER_recv->widget, "P02") == 0) {
     			printf("Turn off relay\r\n");
     			gpio_set_level(RELAY_1, 1);
@@ -103,8 +105,8 @@ static void stone_cmd(){
     			push_history();
     		} else if (strcmp((const char*)STONER_recv->widget, "user_time_edit") == 0) {
     			if(set_time_epoch_string((char*)STONER_recv->text) == ESP_OK){
-    				set_text("label","label_time_validation", "Set time success");
-    			} else set_text("label","label_time_validation", "Set time fail, check format");
+    				set_text("label","label_time_validation", "Set time success", 0);
+    			} else set_text("label","label_time_validation", "Set time fail, check format", 0);
     		} else if (strcmp((const char*)STONER_recv->widget, "digit_clock1") == 0) {
     			set_time_epoch_string((char*)STONER_recv->text);
     		} else if (strcmp((const char*)STONER_recv->widget, "W01") == 0 || strcmp((const char*)STONER_recv->widget, "W02") == 0) {
@@ -176,8 +178,8 @@ static void pressure_read(){
 		else if (percentage > 100) percentage = 100;
 //		printf("Pressure - temperature - percentage : %.2f (Bar) - %.1f - %d \n", pres, tem, percentage);
 		sprintf(pressure_value, "%d", percentage);
-		set_text("label","label_pressure_start", pressure_value);
-		set_text("label","label_pressure_stop", pressure_value);
+		set_text("label","label_pressure_start", pressure_value, 0);
+		set_text("label","label_pressure_stop", pressure_value, 0);
 		vTaskDelay(pdMS_TO_TICKS(1000));
 	}
 }
@@ -212,12 +214,13 @@ static void timer_handle(){
     			gpio_set_level(RELAY_3, 1);
     			gpio_set_level(RELAY_4, 1);
     			gptimer_stop(gptimer);
+    			printf("mode_to_time: %d", mode_to_time);
     			save_history(mode, mode_to_time);
     			back_win();
 			}
 			sprintf(cd_timmer_buf, "%lu:%02lu", record/60, record%60);
 			printf("Runtime = %lu, record time = %lu, timer_cd = %s\r\n", run_time, record, cd_timmer_buf);
-			set_text("label","label_timer_count_down", cd_timmer_buf);
+			set_text("label","label_timer_count_down", cd_timmer_buf, 0);
 		 }else {
 
 		 }
@@ -245,7 +248,7 @@ void app_main(void)
 	Stone_CMD_buf_handle = xQueueCreate(5, sizeof(recive_group *));
 	Timer_queue = xQueueCreate(10, sizeof(example_queue_element_t));
     xTaskCreate(uart_task, "uart_task", ECHO_TASK_STACK_SIZE, NULL, 10, NULL);
-	xTaskCreate(stone_cmd, "stone_cmd", ECHO_TASK_STACK_SIZE*8, NULL, 10, NULL);
+	xTaskCreate(stone_cmd, "stone_cmd", ECHO_TASK_STACK_SIZE*16, NULL, 10, NULL);
 	xTaskCreate(timer_handle, "timer", ECHO_TASK_STACK_SIZE*8, NULL, 10, NULL);
 	xTaskCreate(pressure_read, "sensor read", ECHO_TASK_STACK_SIZE, NULL, 10, NULL);
 	check_status_afer_seset();

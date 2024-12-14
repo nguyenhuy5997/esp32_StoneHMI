@@ -21,7 +21,7 @@
 #define ECHO_TEST_CTS (UART_PIN_NO_CHANGE)
 
 #define ECHO_UART_PORT_NUM      (CONFIG_EXAMPLE_UART_PORT_NUM)
-#define ECHO_UART_BAUD_RATE     (CONFIG_EXAMPLE_UART_BAUD_RATE)
+#define ECHO_UART_BAUD_RATE     (115200)
 #define ECHO_TASK_STACK_SIZE    (CONFIG_EXAMPLE_TASK_STACK_SIZE)
 //Print instructions to parse data for Arduino observation******************************************
 #define Instruction_parsing        1    //The default open

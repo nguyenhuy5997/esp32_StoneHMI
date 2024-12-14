@@ -108,28 +108,80 @@ void save_history(uint8_t mode, uint16_t time ){
     ESP_LOGI(TAG, "File written");
 }
 void push_history(){
-	set_row_height("table_view1", 40);
+#define INDEX     7
+#define DATE      22
+#define TIME_MODE 5
+#define MODE	  4
+#define TIME_RUN  7
+#define LOG_MAX	  200
     ESP_LOGI(TAG, "Reading file");
     FILE* f = fopen("/spiffs/log.txt", "r");
     if (f == NULL) {
         ESP_LOGE(TAG, "Failed to open file for reading");
         return;
     }
-    char text_data[100];
-    char line[64];
-    char str1[30], str2[10], str3[10], str4[10];
-    uint8_t line_count = 0;
-
+    char line[30];
+    char str1[20], str2[3], str3[2], str4[4];
+    char string_label[18];
+    char array_res_1[INDEX*LOG_MAX+3], array_res_2[DATE*LOG_MAX+3], array_res_3[TIME_MODE*LOG_MAX+3], array_res_4[MODE*LOG_MAX+3], array_res_5[TIME_RUN*LOG_MAX+3];
+    uint32_t line_count = 0;
     if(f!=NULL){
+    	memset(array_res_1, 0, sizeof(array_res_1));
+    	memset(array_res_2, 0, sizeof(array_res_2));
+    	memset(array_res_3, 0, sizeof(array_res_3));
+    	memset(array_res_4, 0, sizeof(array_res_4));
+    	memset(array_res_5, 0, sizeof(array_res_5));
+    	sprintf(array_res_1+strlen(array_res_1), "[");
+    	sprintf(array_res_2+strlen(array_res_2), "[");
+    	sprintf(array_res_3+strlen(array_res_3), "[");
+    	sprintf(array_res_4+strlen(array_res_4), "[");
+    	sprintf(array_res_5+strlen(array_res_5), "[");
     	while (fgets(line, sizeof(line), f)) {
 			printf("%s", line);
 			sscanf(line, "%[^,],%[^,],%[^,],%s", str1, str2, str3, str4);
-			sprintf(text_data,"[\"%d\",\"%s\",\"%s\",\"%s\",\"%s\",\"\"]", line_count, str1, str2, str3, str4);
-			set_table_text("table_view1", text_data, line_count++);
-//			if(line_count > 50) break;
+			sprintf(array_res_1+strlen(array_res_1), "\"%ld\",", ++line_count);
+			sprintf(array_res_2+strlen(array_res_2), "\"%s\",", str1);
+			sprintf(array_res_3+strlen(array_res_3), "\"%s\",", str2);
+			sprintf(array_res_4+strlen(array_res_4), "\"%s\",", str3);
+			sprintf(array_res_5+strlen(array_res_5), "\"%s\",", str4);
+			if(line_count >= LOG_MAX) break;
 		}
-    	set_row_number("table_view1", line_count);
+    	sprintf(array_res_1+strlen(array_res_1)-1, "]");
+    	sprintf(array_res_2+strlen(array_res_2)-1, "]");
+    	sprintf(array_res_3+strlen(array_res_3)-1, "]");
+    	sprintf(array_res_4+strlen(array_res_4)-1, "]");
+    	sprintf(array_res_5+strlen(array_res_5)-1, "]");
+//    	printf("%s\r\n", array_res_1);
+//    	printf("%s\r\n", array_res_2);
+//    	printf("%s\r\n", array_res_3);
+//    	printf("%s\r\n", array_res_4);
+//    	printf("%s\r\n", array_res_5);
+    	memset(string_label, 0, sizeof(string_label));
+    	sprintf(string_label, "lable1_copy1_%d", LOG_MAX);
+    	set_text("label", string_label, array_res_1, 1);
+    	vTaskDelay(pdMS_TO_TICKS(50));
+
+    	memset(string_label, 0, sizeof(string_label));
+    	sprintf(string_label, "lable2_copy1_%d", LOG_MAX);
+    	set_text("label", string_label, array_res_2, 1);
+    	vTaskDelay(pdMS_TO_TICKS(50));
+
+    	memset(string_label, 0, sizeof(string_label));
+    	sprintf(string_label, "lable3_copy1_%d", LOG_MAX);
+    	set_text("label", string_label, array_res_3, 1);
+    	vTaskDelay(pdMS_TO_TICKS(50));
+
+    	memset(string_label, 0, sizeof(string_label));
+    	sprintf(string_label, "lable4_copy1_%d", LOG_MAX);
+    	set_text("label", string_label, array_res_4, 1);
+    	vTaskDelay(pdMS_TO_TICKS(50));
+
+    	memset(string_label, 0, sizeof(string_label));
+    	sprintf(string_label, "lable5_copy1_%d", LOG_MAX);
+    	set_text("label", string_label, array_res_5, 1);
+
 		fclose(f);
+	    ESP_LOGI(TAG, "Closing file");
     }
 }
 esp_err_t time_parser(char * input_string, struct tm *timeStruct) {

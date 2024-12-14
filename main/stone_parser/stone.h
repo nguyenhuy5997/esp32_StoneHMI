@@ -125,7 +125,7 @@ unsigned short do_crc(unsigned char *ptr, int len);
 
 
 //Send the related********************************************
-#define TX_LEN 200
+#define TX_LEN 5000
 #define STR_HEAD_CMD					"ST<{"
 #define STR_CMD_CODE					"cmd_code"
 #define STR_HEAD_CMD2					"ST<{\"cmd_code\":"
@@ -306,7 +306,7 @@ void back_home(void);
 
 /* command interface for Setting the text commands */
 // Call the example: set_text("label", "label5", "hello stone");
-void set_text(char* _type, char* _name, char* _text);
+void set_text(char* _type, char* _name, char* _text, bool multi);
 
 /* Command interface for the set value command */
 // Call the example: set_value("slider", "slider2", "66");
