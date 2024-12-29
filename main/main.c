@@ -173,7 +173,7 @@ static void pressure_read(){
 		}
 		tem = tem/100;
 		pres = pres/100;
-		percentage = round(pres*100 / 150);
+		percentage = round(pres*100 / 130);
 		if(percentage < 3) percentage = 0;
 		else if (percentage > 98) percentage = 100;
 //		printf("Pressure - temperature - percentage : %.2f (Bar) - %.1f - %d \n", pres, tem, percentage);
