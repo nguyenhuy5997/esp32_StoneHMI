@@ -26,11 +26,16 @@
 #define RELAY_2 33
 #define RELAY_3 25
 #define RELAY_4 26
+#define OPEN_TIME_1 2
+#define OPEN_TIME_2 5
+#define OPEN_TIME_3 10
+#define OPEN_TIME_4 15
+#define OPEN_TIME_5 20
 QueueHandle_t  Stone_CMD_buf_handle;
 QueueHandle_t Timer_queue;
 gptimer_handle_t gptimer = NULL;
 uint8_t mode = 1;
-uint32_t  record = 300;
+uint32_t  record = OPEN_TIME_1*60;
 uint32_t run_time = 0;
 uint16_t remaining_time = 0;
 uint16_t mode_to_time = 0;
@@ -66,27 +71,27 @@ static void stone_cmd(){
 				mode = (uint8_t)STONER_recv->float_value;
 			}else if(strcmp((const char*)STONER_recv->widget, "P01") == 0) {
     			printf("Turn on relay\r\n");
-    			gpio_set_level(RELAY_1, 0);
-    			gpio_set_level(RELAY_2, 0);
-    			gpio_set_level(RELAY_3, 0);
-    			gpio_set_level(RELAY_4, 0);
+    			gpio_set_level(RELAY_1, 1);
+    			gpio_set_level(RELAY_2, 1);
+    			gpio_set_level(RELAY_3, 1);
+    			gpio_set_level(RELAY_4, 1);
 				if(mode == 1){
-					mode_to_time = record = 5*60;
+					mode_to_time = record = OPEN_TIME_1*60;
 				}
 				else if(mode == 2) {
-					mode_to_time = record = 10*60;
+					mode_to_time = record = OPEN_TIME_2*60;
 				}
 				else if (mode == 3) {
-					mode_to_time = record = 15*60;
+					mode_to_time = record = OPEN_TIME_3*60;
 				}
 				else if(mode == 4) {
-					mode_to_time = record = 20*60;
+					mode_to_time = record = OPEN_TIME_4*60;
 				}
 				else if(mode == 5) {
-					mode_to_time = record = 30*60;
+					mode_to_time = record = OPEN_TIME_5*60;
 				}
 				else {
-					mode_to_time = record = 5*60;
+					mode_to_time = record = OPEN_TIME_1*60;
 				}
 				run_time = 0;
 				gptimer_start(gptimer);
@@ -95,10 +100,10 @@ static void stone_cmd(){
 				set_text("label", "FREQ2", t, 0);
     		} else if (strcmp((const char*)STONER_recv->widget, "P02") == 0) {
     			printf("Turn off relay\r\n");
-    			gpio_set_level(RELAY_1, 1);
-    			gpio_set_level(RELAY_2, 1);
-    			gpio_set_level(RELAY_3, 1);
-    			gpio_set_level(RELAY_4, 1);
+    			gpio_set_level(RELAY_1, 0);
+    			gpio_set_level(RELAY_2, 0);
+    			gpio_set_level(RELAY_3, 0);
+    			gpio_set_level(RELAY_4, 0);
     			gptimer_stop(gptimer);
     			save_history(mode, run_time);
     		} else if (strcmp((const char*)STONER_recv->widget, "B42") == 0 || strcmp((const char*)STONER_recv->widget, "B01") == 0) {
@@ -124,23 +129,23 @@ static void stone_cmd(){
     			}
     		} else if (strcmp((const char*)STONER_recv->widget,"FREQ2") == 0) {
     			if((uint8_t)STONER_recv->float_value == 1){
-    				run_time = 5*60 - record;
-    				mode_to_time = 5*60;
+    				run_time = OPEN_TIME_1*60 - record;
+    				mode_to_time = OPEN_TIME_1*60;
     			} else if((uint8_t)STONER_recv->float_value == 2) {
-    				run_time = 10*60 - record;
-    				mode_to_time = 10*60;
+    				run_time = OPEN_TIME_2*60 - record;
+    				mode_to_time = OPEN_TIME_2*60;
     			}else if((uint8_t)STONER_recv->float_value == 3) {
-    				run_time = 15*60 - record;
-    				mode_to_time = 15*60;
+    				run_time = OPEN_TIME_3*60 - record;
+    				mode_to_time = OPEN_TIME_3*60;
     			}else if((uint8_t)STONER_recv->float_value == 4) {
-    				run_time = 20*60 - record;
-    				mode_to_time = 20*60;
+    				run_time = OPEN_TIME_4*60 - record;
+    				mode_to_time = OPEN_TIME_4*60;
     			} else if((uint8_t)STONER_recv->float_value == 5) {
-    				run_time = 30*60 - record;
-    				mode_to_time = 30*60;
+    				run_time = OPEN_TIME_5*60 - record;
+    				mode_to_time = OPEN_TIME_5*60;
     			} else {
-    				run_time = 5*60 - record;
-    				mode_to_time = 5*60;
+    				run_time = OPEN_TIME_1*60 - record;
+    				mode_to_time = OPEN_TIME_1*60;
     			}
     			gptimer_start(gptimer);
     		}
@@ -209,10 +214,10 @@ static void timer_handle(){
 			run_time++;
 			if(record == 0) {
     			printf("Turn off relay\r\n");
-    			gpio_set_level(RELAY_1, 1);
-    			gpio_set_level(RELAY_2, 1);
-    			gpio_set_level(RELAY_3, 1);
-    			gpio_set_level(RELAY_4, 1);
+    			gpio_set_level(RELAY_1, 0);
+    			gpio_set_level(RELAY_2, 0);
+    			gpio_set_level(RELAY_3, 0);
+    			gpio_set_level(RELAY_4, 0);
     			gptimer_stop(gptimer);
     			printf("mode_to_time: %d", mode_to_time);
     			save_history(mode, mode_to_time);
@@ -237,10 +242,10 @@ void app_main(void)
     gpio_set_direction(RELAY_3, GPIO_MODE_OUTPUT);
     gpio_reset_pin(RELAY_4);
     gpio_set_direction(RELAY_4, GPIO_MODE_OUTPUT);
-    gpio_set_level(RELAY_1, 1);
-    gpio_set_level(RELAY_2, 1);
-    gpio_set_level(RELAY_3, 1);
-    gpio_set_level(RELAY_4, 1);
+    gpio_set_level(RELAY_1, 0);
+    gpio_set_level(RELAY_2, 0);
+    gpio_set_level(RELAY_3, 0);
+    gpio_set_level(RELAY_4, 0);
 	init_SPIFFS();
 #ifdef DS3221
 	set_time_epoch_ds3221();
